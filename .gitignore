@@ -1,0 +1,63 @@
+# ==============================================================
+# Keil MDK-ARM 构建产物（可由源码重新生成，不入库）
+# ==============================================================
+# 编译中间文件（.o/.crf/.d）与链接产物（.axf/.hex/.bin/.map/.lnp/.htm）
+# 用 /* 而非 /：只排除目录内容，保证下面的 ! 例外规则能生效
+MDK-ARM/07-canopen-freertos/*
+# 例外：分散加载文件是手写的「源文件」，决定 OTA 双分区布局，必须入库
+!MDK-ARM/07-canopen-freertos/07-canopen-freertos.sct
+
+# 汇编器列表文件
+MDK-ARM/*.lst
+
+# ==============================================================
+# Keil 个人设置（含本机用户名与窗口布局，换机器无用）
+# ==============================================================
+*.uvguix.*
+*.uvoptx
+MDK-ARM/DebugConfig/
+
+# ==============================================================
+# 未使用的 CMSIS 子库
+# 由 CubeMX 打包带入，uvprojx 中 0 处引用，且不在 IncludePath 上。
+# 保留：CMSIS/Include（内核头 core_cm3.h 等）
+#       CMSIS/Device/ST/STM32F1xx/Include（器件头 stm32f1xx.h 等）
+# ==============================================================
+# 数字信号处理库（本项目未使用）
+Drivers/CMSIS/DSP/
+# 神经网络库（本项目未使用）
+Drivers/CMSIS/NN/
+# CMSIS 4.x 旧布局，与 Include/ 重复
+Drivers/CMSIS/Core/
+# Cortex-A 核头文件（本芯片是 Cortex-M3）
+Drivers/CMSIS/Core_A/
+# 预编译 DSP 库文件
+Drivers/CMSIS/Lib/
+# CMSIS-RTOS v1 模板（实际用 FreeRTOS 自带封装）
+Drivers/CMSIS/RTOS/
+# CMSIS-RTOS v2（本项目用 v1）
+Drivers/CMSIS/RTOS2/
+# 文档
+Drivers/CMSIS/docs/
+# GCC/IAR 启动文件模板（Keil 用 MDK-ARM/ 下自己的）
+Drivers/CMSIS/Device/ST/STM32F1xx/Source/
+
+# ==============================================================
+# 工具生成的会话记录
+# ==============================================================
+.workbuddy/
+
+# ==============================================================
+# 通用兜底
+# ==============================================================
+*.o
+*.crf
+*.d
+*.axf
+*.lnp
+*.dep
+*.build_log.htm
+*_uvopt.bak
+*_uvproj.bak
+JLinkLog.txt
+JLinkSettings.ini

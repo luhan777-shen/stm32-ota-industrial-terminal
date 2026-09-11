@@ -1,0 +1,26 @@
+; *************************************************************
+; *** Scatter-Loading Description File (OTA project)          ***
+; *** M2: boot stub at 0x08000000, app at 0x08002000 (56K)    ***
+; *** Layout:                                                 ***
+; ***   0x08000000-0x080000FF  boot stub (in startup file)    ***
+; ***   0x08002000-0x0800FFFF  app (56K)                      ***
+; *************************************************************
+
+LR_BOOT 0x08000000 0x00002000  {      ; bootloader region (8K)
+  ER_BOOT 0x08000000 0x00002000  {
+   startup_stm32f103xb.o (BOOT, +First)
+   boot.o (+RO)
+  }
+}
+
+LR_IROM1 0x08002000 0x0000E000  {      ; app region (56K)
+  ER_IROM1 0x08002000 0x0000E000  {    ; load address = execution address
+   *.o (RESET, +First)
+   *(InRoot$$Sections)
+   .ANY (+RO)
+   .ANY (+XO)
+  }
+  RW_IRAM1 0x20000000 0x00005000  {    ; RW data (20K RAM)
+   .ANY (+RW +ZI)
+  }
+}

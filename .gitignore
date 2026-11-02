@@ -68,7 +68,7 @@ JLinkSettings.ini
 # ==============================================================
 output/
 pips.log
-深思清单.md
+深挖清单.md
 简历-*.md
 *.xmind
 OTA智能终端-*.html

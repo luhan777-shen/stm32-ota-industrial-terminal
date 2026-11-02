@@ -61,3 +61,14 @@ Drivers/CMSIS/Device/ST/STM32F1xx/Source/
 *_uvproj.bak
 JLinkLog.txt
 JLinkSettings.ini
+
+# ==============================================================
+# 个人笔记 / 面试资料 / 编译日志（不入库）
+# 仓库为 public，这些属于私人内容
+# ==============================================================
+output/
+pips.log
+深思清单.md
+简历-*.md
+*.xmind
+OTA智能终端-*.html
